@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from app1.views import seller_form
+from app1.views import seller_form,buyer_feed
 
 urlpatterns = patterns('',
     # Examples:
@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sell/', seller_form),
+    url(r'buyer_feed/', buyer_feed),
 )
