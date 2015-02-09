@@ -12,9 +12,10 @@ def seller_form(request):
 
 	if request.method =="POST":
 		#create a form instance and populate with data
-		form = NameForm(request.POST)
+		form = SellerForm(request.POST)
 		#check whether form details are valid:
 		if form.is_valid():
+			print "yooo!!!!!!!!!!!!"
 			es.index(index="my-index", doc_type="test-type", id=42, body={"any": "data", "timestamp": datetime.now()})
 			HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
 	else:
@@ -24,4 +25,4 @@ def seller_form(request):
 
 
 class SellerForm(forms.Form):
-	prod_description = forms.TextField(label='Looking for buyers interested in..',max_length=5000)
+	prod_description = forms.CharField(label='Looking for buyers interested in..',max_length=5000)
