@@ -1,0 +1,42 @@
+{% extends "account/base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<h1 class="sign-head">{% trans "Sign Up is easy and only takes a minute" %}</h1>
+
+<section class="container sign-container">
+  <div class="col-md-6">
+    <article class="signin-card">
+      <img class="tz-logo" src="/static/img/tz-signin.png" width="100" alt="TAKE ZERO">
+      <p style="text-align:center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+      
+      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button type="submit" class="signin-btn">{% trans "Sign Up" %}</button>
+      </form>
+  </article>
+  </div>
+  <div class="col-md-6">
+    
+    <div class="socialaccount_ballot signup-social">
+      <p style="text-align:center">Signup using your Social Media Account</p>
+      <ul class="socialaccount_providers nav">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+
+

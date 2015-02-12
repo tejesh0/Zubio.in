@@ -24,9 +24,9 @@ def seller_form(request):
         form = SellerForm(request.POST)
         # check whether form details are valid:
         if form.is_valid():
-        	
             # print request.POST
-            es.index(index="my-index", doc_type="test-type", id=request.user.id, body={"prod_description": request.POST['prod_description'], "selling_price": request.POST["selling_price"], "months_used": request.POST["months_used"], "is_negotiable": request.POST["is_negotiable"], "timestamp": datetime.now()})
+            print request
+            es.index(index="my-index", doc_type="test-type", id=99, body={"prod_description": request.POST['prod_description'], "selling_price": request.POST["selling_price"], "months_used": request.POST["months_used"], "is_negotiable": request.POST["is_negotiable"], "timestamp": datetime.now()})
             return HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
     else:
         form = SellerForm()
@@ -36,6 +36,7 @@ def seller_form(request):
 
 def buyer_feed(request):
 
-    test = es.get(index="my-index", doc_type="test-type", id=42)['_source']
+	#need to iterate over all product id's and append it to json and pass it in form_data
+    test = es.get(index="my-index", doc_type="test-type", id=99)['_source']
 
     return render(request, 'buyer_feed.html', {'form_data': test})
