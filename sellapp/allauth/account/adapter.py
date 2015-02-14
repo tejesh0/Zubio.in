@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import re
 import warnings
 import json
-import datetime
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -13,8 +13,6 @@ from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.contrib import messages
-from elasticsearch import Elasticsearch
-from django.contrib.auth.models import Group
 
 try:
     from django.utils.encoding import force_text
@@ -30,9 +28,7 @@ from . import app_settings
 # Don't bother turning this into a setting, as changing this also
 # requires changing the accompanying form error message. So if you
 # need to change any of this, simply override clean_username().
-# USERNAME_REGEX = re.compile(r'^[\w.@+-]+$', re.UNICODE)
-USERNAME_REGEX = re.compile('^[A-Za-z0-9]+(?:[.][A-Za-z0-9]+)*$')
-es=Elasticsearch()
+USERNAME_REGEX = re.compile(r'^[\w.@+-]+$', re.UNICODE)
 
 
 class DefaultAccountAdapter(object):
@@ -169,7 +165,6 @@ class DefaultAccountAdapter(object):
         last_name = user_field(user, 'last_name')
         email = user_email(user)
         username = user_username(user)
-        profession= request.POST['profession']
         if app_settings.USER_MODEL_USERNAME_FIELD:
             user_username(user,
                           username
@@ -177,9 +172,6 @@ class DefaultAccountAdapter(object):
                                                        last_name,
                                                        email,
                                                        'user']))
-
-        t={'username':username.lower(), 'contact':{'email':email.lower()},'firstName':first_name,'lastName':last_name,'createdAt':datetime.datetime.now()}
-        res=es.create(index='takezero', doc_type=profession,body=t)
 
     def save_user(self, request, user, form, commit=True):
         """
@@ -195,8 +187,6 @@ class DefaultAccountAdapter(object):
         username = data.get('username')
         user_email(user, email)
         user_username(user, username)
-        profession = data.get('profession')
-        
         if first_name:
             user_field(user, 'first_name', first_name)
         if last_name:
@@ -210,8 +200,6 @@ class DefaultAccountAdapter(object):
             # Ability not to commit makes it easier to derive from
             # this adapter by adding
             user.save()
-            group = Group.objects.get(name=profession)
-            user.groups.add(group)
         return user
 
     def clean_username(self, username):
@@ -220,14 +208,8 @@ class DefaultAccountAdapter(object):
         (dynamically) restrict what usernames can be chosen.
         """
         if not USERNAME_REGEX.match(username):
-            # raise forms.ValidationError(_("Usernames can only contain "
-            #                               "letters, digits and @/./+/-/_."))
             raise forms.ValidationError(_("Usernames can only contain "
-                                          "letters, digits and . "))
-        res=es.search(index="takezero",body={"query":{"match":{"username":username}}})['hits']['hits']
-        if len(res)!=0:
-            raise forms.ValidationError(_("This username is already taken. Please "
-                                      "choose another."))
+                                          "letters, digits and @/./+/-/_."))
 
         # TODO: Add regexp support to USERNAME_BLACKLIST
         username_blacklist_lower = [ub.lower()
@@ -265,13 +247,15 @@ class DefaultAccountAdapter(object):
         return password
 
     def add_message(self, request, level, message_template,
-                    message_context={}, extra_tags=''):
+                    message_context=None, extra_tags=''):
         """
         Wrapper of `django.contrib.messages.add_message`, that reads
         the message text from a template.
         """
         if 'django.contrib.messages' in settings.INSTALLED_APPS:
             try:
+                if message_context is None:
+                    message_context = {}
                 message = render_to_string(message_template,
                                            message_context).strip()
                 if message:

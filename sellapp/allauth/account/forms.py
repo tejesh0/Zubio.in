@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 from django.core import exceptions
 from django.db.models import Q
 from django.utils.translation import pgettext, ugettext_lazy as _, ugettext
-from django.utils.importlib import import_module
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.tokens import default_token_generator
@@ -23,16 +22,11 @@ from .utils import (perform_login, setup_user_email, user_username,
 from .app_settings import AuthenticationMethod
 from . import app_settings
 from .adapter import get_adapter
-from django.db import models
 
-GROUPS = (('','Select Profession...'),
-        ('users', 'Model/Actor'),
-        ('agency', 'Agency'),
-        ('photographer', 'Photographer'),
-        ('brand', 'Brand'),
-        ('mua', 'Make Up Artist'),
-        ('filmmaker', 'Film Maker'),)
-
+try:
+    from importlib import import_module
+except ImportError:
+    from django.utils.importlib import import_module
 
 class PasswordField(forms.CharField):
 
@@ -217,15 +211,12 @@ class BaseSignupForm(_base_signup_form_class()):
     email = forms.EmailField(widget=forms.TextInput(
         attrs={'type': 'email',
                'placeholder': _('E-mail address')}))
-    profession = forms.ChoiceField(choices=GROUPS,required =True,label="Choose your profession",)
 
     def __init__(self, *args, **kwargs):
         email_required = kwargs.pop('email_required',
                                     app_settings.EMAIL_REQUIRED)
         self.username_required = kwargs.pop('username_required',
                                             app_settings.USERNAME_REQUIRED)
-        profession_required = kwargs.pop('profession_required',
-                                    app_settings.PROFESSION_REQUIRED)
         super(BaseSignupForm, self).__init__(*args, **kwargs)
         # field order may contain additional fields from our base class,
         # so take proper care when reordering...
@@ -284,10 +275,8 @@ class BaseSignupForm(_base_signup_form_class()):
 
 class SignupForm(BaseSignupForm):
 
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
     password1 = SetPasswordField(label=_("Password"))
-    password2 = PasswordField(label=_("Confirm Password"))
+    password2 = PasswordField(label=_("Password (again)"))
     confirmation_key = forms.CharField(max_length=40,
                                        required=False,
                                        widget=forms.HiddenInput())

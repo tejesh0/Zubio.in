@@ -6,13 +6,11 @@
 {% block head_title %}{% trans "Login Cancelled" %}{% endblock %}
 
 {% block content %}
-<section class="signin-card" style="margin:40px auto">  
-<i class="navbar-takezero" style="margin-top:30px;"></i>
-<h1 class="sign-head" style="margin-top:10px;">{% trans "Login Cancelled" %}</h1>
+
+<h1>{% trans "Login Cancelled" %}</h1>
 
 {% url 'account_login' as login_url %}
 
 <p>{% blocktrans %}You decided to cancel logging in to our site using one of your existing accounts. If this was a mistake, please proceed to <a href="{{login_url}}">sign in</a>.{% endblocktrans %}</p>
-</section>
-{% endblock %}
 
+{% endblock %}

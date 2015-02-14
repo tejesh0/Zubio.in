@@ -21,7 +21,7 @@ except ImportError:
     from django.utils.encoding import force_unicode as force_text
 
 from ..utils import (import_callable, valid_email_or_none,
-                     get_user_model)
+                     get_user_model, get_request_param)
 
 from . import signals
 
@@ -35,7 +35,7 @@ def get_next_redirect_url(request, redirect_field_name="next"):
     Returns the next URL to redirect to, if it was explicitly passed
     via the request.
     """
-    redirect_to = request.REQUEST.get(redirect_field_name)
+    redirect_to = get_request_param(request, redirect_field_name)
     if not get_adapter().is_safe_url(redirect_to):
         redirect_to = None
     return redirect_to
@@ -94,7 +94,7 @@ def user_email(user, *args):
 
 
 def perform_login(request, user, email_verification,
-                  redirect_url=None, signal_kwargs={},
+                  redirect_url=None, signal_kwargs=None,
                   signup=False):
     """
     Keyword arguments:
@@ -126,6 +126,9 @@ def perform_login(request, user, email_verification,
     get_adapter().login(request, user)
     response = HttpResponseRedirect(
         get_login_redirect_url(request, redirect_url))
+
+    if signal_kwargs is None:
+        signal_kwargs = {}
     signals.user_logged_in.send(sender=user.__class__,
                                 request=request,
                                 response=response,
@@ -140,7 +143,9 @@ def perform_login(request, user, email_verification,
 
 
 def complete_signup(request, user, email_verification, success_url,
-                    signal_kwargs={}):
+                    signal_kwargs=None):
+    if signal_kwargs is None:
+        signal_kwargs = {}
     signals.user_signed_up.send(sender=user.__class__,
                                 request=request,
                                 user=user,

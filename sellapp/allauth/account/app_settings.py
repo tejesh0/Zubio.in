@@ -153,13 +153,6 @@ class AppSettings(object):
         return self._setting("USERNAME_REQUIRED", True)
 
     @property
-    def PROFESSION_REQUIRED(self):
-        """
-        The user is required to enter a professio when signing up
-        """
-        return self._setting("PROFESSION_REQUIRED", True)
-
-    @property
     def USERNAME_MIN_LENGTH(self):
         """
         Minimum username Length

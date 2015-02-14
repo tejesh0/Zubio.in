@@ -14,7 +14,6 @@ from ..account import app_settings as account_settings
 from ..account.app_settings import EmailVerificationMethod
 
 from . import app_settings
-from facebook_python.views import getFriends
 
 
 class DefaultSocialAccountAdapter(object):
@@ -39,7 +38,7 @@ class DefaultSocialAccountAdapter(object):
                              provider_id,
                              error=None,
                              exception=None,
-                             extra_context={}):
+                             extra_context=None):
         """
         Invoked when there is an error in the authentication cycle. In this
         case, pre_social_login will not be reached.
@@ -67,7 +66,6 @@ class DefaultSocialAccountAdapter(object):
         else:
             get_account_adapter().populate_username(request, u)
         sociallogin.save(request)
-        # getFriends(request,u)
         return u
 
     def populate_user(self,

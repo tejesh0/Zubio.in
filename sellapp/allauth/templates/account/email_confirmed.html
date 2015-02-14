@@ -7,12 +7,11 @@
 
 
 {% block content %}
-<section class="signin-card" style="margin:40px auto">
-	<i class="navbar-takezero" style="margin-top:30px;"></i>
-    <h1 class="sign-head" style="margin-top:10px;">{% trans "Confirm E-mail Address" %}</h1>
 
-	{% user_display email_address.user as user_display %}
-	        
-	<p>{% blocktrans with email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
-</section>
+<h1>{% trans "Confirm E-mail Address" %}</h1>
+
+{% user_display confirmation.email_address.user as user_display %}
+        
+<p>{% blocktrans with confirmation.email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+
 {% endblock %}

@@ -8,13 +8,18 @@ from django.core import urlresolvers
 from django.db.models import FieldDoesNotExist
 from django.db.models.fields import (DateTimeField, DateField,
                                      EmailField, TimeField)
-from django.utils import importlib, six, dateparse
+from django.utils import six, dateparse
 from django.utils.datastructures import SortedDict
 from django.core.serializers.json import DjangoJSONEncoder
 try:
     from django.utils.encoding import force_text
 except ImportError:
     from django.utils.encoding import force_unicode as force_text
+
+try:
+    import importlib
+except:
+    from django.utils import importlib
 
 
 def _generate_unique_username_base(txts):
@@ -197,3 +202,7 @@ def get_form_class(forms, form_id, default_form):
     if isinstance(form_class, six.string_types):
         form_class = import_attribute(form_class)
     return form_class
+
+
+def get_request_param(request, param, default=None):
+    return request.POST.get(param) or request.GET.get(param, default)

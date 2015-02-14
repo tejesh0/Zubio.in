@@ -6,9 +6,7 @@
 {% block head_title %}{% trans "Account Connections" %}{% endblock %}
 
 {% block content %}
-<section class="signin-card" style="margin:40px auto">
-<i class="navbar-takezero" style="margin-top:30px;"></i>
-<h1 class="sign-head" style="margin-top:10px;">{% trans "Account Connections" %}</h1>
+<h1>{% trans "Account Connections" %}</h1>
 
 {% if form.accounts %}
 <p>{% blocktrans %}You can sign in to your account using any of the following third party accounts:{% endblocktrans %}</p>
@@ -35,7 +33,7 @@
 {% endfor %}
 
 <div>
-<button type="submit" class="signin-btn" style="margin-top:5px;">{% trans 'Remove' %}</button>
+<button type="submit">{% trans 'Remove' %}</button>
 </div>
 
 </fieldset>
@@ -46,12 +44,12 @@
 <p>{% trans 'You currently have no social network accounts connected to this account.' %}</p>
 {% endif %}
 
-<h2 class="seperator">{% trans 'Add a 3rd Party Account' %}</h2>
+<h2>{% trans 'Add a 3rd Party Account' %}</h2>
 
 <ul class="socialaccount_providers">
 {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
 </ul>
 
 {% include "socialaccount/snippets/login_extra.html" %}
-</section>
+
 {% endblock %}
