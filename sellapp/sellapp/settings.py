@@ -1,5 +1,5 @@
 """
-Django settings for sellapp project.
+Django settings for zubio project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -95,9 +95,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-ROOT_URLCONF = 'sellapp.urls'
+ROOT_URLCONF = 'zubio.urls'
 
-WSGI_APPLICATION = 'sellapp.wsgi.application'
+WSGI_APPLICATION = 'zubio.wsgi.application'
 
 
 # Database
