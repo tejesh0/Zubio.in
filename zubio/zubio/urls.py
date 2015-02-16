@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from app1.views import seller_form,buyer_feed
+from users_zubio.views import seller_form,buyer_feed
 import allauth.urls
 urlpatterns = patterns('',
     # Examples:

@@ -35,7 +35,8 @@ def seller_form(request):
             
             es.index(index="seller_form", doc_type="test-type", id=request.user.id, body=doc)
 
-            # return HttpResponse("Yo..!! Your item is attracting lot of buyers!!"}
+            return HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
+        return HttpResponse("Invalid details")
     else:   
         form = SellerForm()
 
