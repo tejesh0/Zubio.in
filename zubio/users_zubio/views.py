@@ -12,7 +12,7 @@ class SellerForm(forms.Form):
         label='Looking for buyers interested in..', max_length=5000)
     months_used = forms.IntegerField()
     selling_price = forms.IntegerField()
-    is_negotiable = forms.BooleanField(required=False)
+    is_negotiable = forms.BooleanField(required=False,initial=True,default=True)
 
 # Create your views here.
 
@@ -33,7 +33,7 @@ def seller_form(request):
                     doc[field] = request.POST[field]
 
             
-            es.index(index="seller_form", doc_type="test-type", id=request.user.id, body=doc)
+            es.update(index="seller_form", doc_type="test-type", id=request.user.id, body=doc)
 
             return HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
         return HttpResponse("Invalid details")
@@ -47,13 +47,15 @@ def buyer_feed(request):
 
 	#need to iterate over all product id's and append it to json and pass it in form_data
     # for
-    test = es.get(index="seller_form", doc_type="test-type", id=request.user.id)['_source']
+    # test = es.get(index="seller_form", doc_type="test-type", id=request.user.id)['_source']
+    es.indices.refresh(index="seller_form")
 
     res = es.search(index="seller_form",body={"query": {"match_all": {}}})
     print res['hits']['total']
     form_data = []
-    for i in range(0,res['hits']['total']):
-        
-        form_data.append(res['hits']['hits'][i]['_source'])
+    for i in res['hits']['hits']:
+    	print "**************"
+        print i
+        form_data.append(i['_source'])
 
     return render(request, 'buyer_feed.html', {'form_data': form_data })
