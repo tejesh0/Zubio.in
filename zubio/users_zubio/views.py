@@ -4,16 +4,18 @@ from datetime import datetime
 from elasticsearch import Elasticsearch
 from django import forms
 import pdb
+import logging
 es = Elasticsearch()
 
 
 class SellerForm(forms.Form):
     prod_description = forms.CharField(
-        label='product description', max_length=5000)
-    months_used = forms.IntegerField()
-    original_price = forms.IntegerField()
-    selling_price = forms.IntegerField()
-    quantity = forms.IntegerField()
+        label='product description', max_length=5000,required=False)
+    months_used = forms.IntegerField(required=False)
+    original_price = forms.IntegerField(required=False)
+    selling_price = forms.IntegerField(required=False)
+    quantity = forms.IntegerField(required=False)
+    # is_active = forms.BooleanField(initial=True, hidden=True)
     # prod_image = forms.ImageField()
     # is_negotiable = forms.BooleanField(required=False,initial=True)
 
@@ -37,8 +39,15 @@ def seller_form(request):
                     print request.POST[field]
                     doc[field] = request.POST[field]
 
-            
-            es.create(index="sell_form", doc_type="details", id=request.user.id, body=doc)
+            tracer = logging.getLogger('elasticsearch.trace')
+            tracer.setLevel(logging.INFO)
+            tracer.addHandler(logging.FileHandler('/tmp/es_trace.log'))
+
+            res = es.search(index="sell_form", doc_type="product")
+
+            print res
+
+            es.index(index="sell_form", doc_type="product", id=request.user.id, body={'doc':{'prod':doc}})
 
             return HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
         return HttpResponse("Invalid details")

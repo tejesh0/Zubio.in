@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^sell/', seller_form),
     url(r'buyer_feed/', buyer_feed),
     url(r'^accounts/', include(allauth.urls)),
+    url(r'^messages/', include('postman.urls')),
 )
 
 if settings.DEBUG:
