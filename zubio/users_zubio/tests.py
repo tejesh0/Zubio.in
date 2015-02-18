@@ -21,6 +21,6 @@ class SellerFormTest(unittest.TestCase):
 	    # to check out its homepage
 	    self.browser.get('http://localhost:8000/sell/')
 
-	    form_data = {'prod_description':'oneplusone','months_used':'3','selling_price':'55000','is_negotiable':''}
+	    form_data = {'prod_description':'oneplusone','months_used':'3','selling_price':'55000'}
 	    form = SellerForm(data=form_data)
 	    self.assertEqual(form.is_valid(), True)
