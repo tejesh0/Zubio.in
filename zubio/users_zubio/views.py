@@ -6,6 +6,7 @@ from django import forms
 import pdb
 import logging
 es = Elasticsearch()
+from datetime import datetime 
 
 
 class SellerForm(forms.Form):
@@ -47,7 +48,8 @@ def seller_form(request):
 
             print res
 
-            es.index(index="sell_form", doc_type="product", id=request.user.id, body={'doc':{'prod':doc}})
+            es.index(index="sell_form", doc_type="product", id=datetime.now(), body={'doc':{'prod':doc}})
+            # i+=1
 
             return HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
         return HttpResponse("Invalid details")
@@ -72,4 +74,4 @@ def buyer_feed(request):
         print i
         form_data.append(i['_source'])
 
-    return render(request, 'buyer_feed.html', {'form_data': form_data })
+    return render(request, 'index.html', {'form_data': form_data })
