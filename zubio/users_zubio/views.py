@@ -70,4 +70,4 @@ def buyer_feed(request):
         print i
         form_data.append(i['_source'])
 
-    return render(request, 'inde.xhtml', {'form_data': form_data })
+    return render(request, 'index.html', {'form_data': form_data })
