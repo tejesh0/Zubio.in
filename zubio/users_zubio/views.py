@@ -40,15 +40,11 @@ def seller_form(request):
                     print request.POST[field]
                     doc[field] = request.POST[field]
 
-            tracer = logging.getLogger('elasticsearch.trace')
-            tracer.setLevel(logging.INFO)
-            tracer.addHandler(logging.FileHandler('/tmp/es_trace.log'))
+            # tracer = logging.getLogger('elasticsearch.trace')
+            # tracer.setLevel(logging.INFO)
+            # tracer.addHandler(logging.FileHandler('/tmp/es_trace.log'))
 
-            res = es.search(index="sell_form", doc_type="product")
-
-            print res
-
-            es.index(index="sell_form", doc_type="product", id=datetime.now(), body={'doc':{'prod':doc}})
+            es.index(index="listing_page", doc_type="item", id=datetime.now(), body={'doc':{'prod':doc}})
             # i+=1
 
             return HttpResponse("Yo..!! Your item is attracting lot of buyers!!")
@@ -64,9 +60,9 @@ def buyer_feed(request):
 	#need to iterate over all product id's and append it to json and pass it in form_data
     # for
     # test = es.get(index="sell_form", doc_type="test-type", id=request.user.id)['_source']
-    es.indices.refresh(index="sell_form")
+    # es.indices.refresh(index="sell_form")
 
-    res = es.search(index="sell_form",body={"query": {"match_all": {}}})
+    res = es.search(index="listing_page",body={"query": {"match_all": {}}})
     print res['hits']['total']
     form_data = []
     for i in res['hits']['hits']:
@@ -74,4 +70,4 @@ def buyer_feed(request):
         print i
         form_data.append(i['_source'])
 
-    return render(request, 'index.html', {'form_data': form_data })
+    return render(request, 'inde.xhtml', {'form_data': form_data })
