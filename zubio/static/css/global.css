@@ -5,7 +5,12 @@ html{
 body{
 	font-family: "latoregular";
 	margin-top: 80px;
-	background: #fdfdfd;
+	background: #f7f5ee;
+}
+
+.container{
+	max-width: 1000px;
+	padding: 10px;
 }
 
 /* ==== Colors ==== */
