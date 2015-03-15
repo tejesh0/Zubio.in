@@ -4,7 +4,7 @@
 	background-size: cover;
 }
 
-.login-container{
+.login-body{
 	width: 100%;
 	height: 100%;
 	background-size: cover;
@@ -14,7 +14,7 @@
 	text-align: center;
 }
 
-.login-modal{
+.login-container{
 	position: relative;
 	width: 500px;
 	height: auto;
@@ -22,18 +22,18 @@
 	color: #fff;
 }
 
-.login-modal p{
+.login-container p{
 	font-size: 14px;
 }
 
-.login-modal p:nth-child(2){
+.login-container p:nth-child(2){
 	font-family: "montserratregular";
 	font-size: 18px;
 	letter-spacing: 1px;
 	padding: 15px 5px;
 }
 
-.login-modal form{
+.login-container form{
 	padding: 5px;
 	width: 100%;
 	margin-bottom: 20px;
@@ -64,11 +64,11 @@
 	background: #3892F9;
 }
 
-.login-modal a{
+.login-container a{
 	color: #fff;
 }
 
-.login-modal form a{
+.login-container form a{
 	padding: 14px;
 	margin: 10px auto;
 	max-width: 400px;
@@ -82,7 +82,7 @@
 	transition: all .3s ease;
 }
 
-.login-modal a i{
+.login-container a i{
 	color: #dedede;
 	font-size: 22px;
 	line-height: 15px;
@@ -90,6 +90,24 @@
 	top: 3px;
 	margin-left: 20px;
 	margin-right: 80px;
+}
+
+.login-modal{
+	z-index: 10;
+	position: absolute;
+	top: 100px;
+	width: 600px;
+	height: auto;
+	left: calc(50% - 300px);
+	background: url(/static/img/gym4.jpg); 
+	background-size: cover;
+	background-position: fixed; 
+}
+
+.login-modal .login-container{
+	margin: 0 auto;
+	padding: 30px 20px;
+	text-align: center;
 }
 
 .banner{
