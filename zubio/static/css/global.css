@@ -1,0 +1,67 @@
+html{
+	-webkit-font-smoothing:antialiased;
+}
+
+body{
+	font-family: "latoregular";
+	font-size: 16px;
+}
+
+nav{
+	background: transparent;
+	height: 60px;
+	padding-top: 10px;
+}
+
+nav .container{
+	width: 100%;
+	padding: 0 20px;
+}
+
+.underline{
+	border-bottom: 1px solid #fff;
+}
+
+a:hover, a:focus{
+	text-decoration: none;
+}
+
+.ghost-btn{
+	margin-top: 6px;
+	float: right;
+	cursor: pointer;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	background: none;
+	font-size: 16px;
+	border: 1px solid #cdcdcd;
+	border-radius: 1px;
+	padding: 6px 15px;
+	transition: all .3s ease;
+}
+
+.ghost-btn:hover, .ghost-btn:focus{
+	background: #f4f4f4;
+	color: #414141;
+	text-decoration: none;
+	outline: none;
+}
+
+.clearfix:after {
+   content: " ";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.overlay{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.login-overlay{
+	position: absolute;
+}

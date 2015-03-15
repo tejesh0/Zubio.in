@@ -31,7 +31,7 @@ def list(request):
 
     # Render list page with the documents and the form
     return render_to_response(
-        'list.html',
+        'login.html',
         {'documents': documents, 'form': form},
         context_instance=RequestContext(request)
     )

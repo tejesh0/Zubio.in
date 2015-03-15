@@ -1,0 +1,168 @@
+.landing-banner{
+	background-position: 10% 10%;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.login-container{
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: top center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+.login-modal{
+	position: relative;
+	width: 500px;
+	height: auto;
+	margin: 120px auto 20px auto;
+	color: #fff;
+}
+
+.login-modal p{
+	font-size: 14px;
+}
+
+.login-modal p:nth-child(2){
+	font-family: "montserratregular";
+	font-size: 18px;
+	letter-spacing: 1px;
+	padding: 15px 5px;
+}
+
+.login-modal form{
+	padding: 5px;
+	width: 100%;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.facebook{
+	background: #3B5999;
+}
+
+.facebook:hover, .facebook:focus{
+	background: #35508B;
+}
+
+.google{
+	background: #dd4b39;
+}
+
+.google:hover, .google:focus{
+	background: #D24736;
+}
+
+.twitter{
+	background: #4099FF;
+}
+
+.twitter:hover, .twitter:focus{
+	background: #3892F9;
+}
+
+.login-modal a{
+	color: #fff;
+}
+
+.login-modal form a{
+	padding: 14px;
+	margin: 10px auto;
+	max-width: 400px;
+	display: block;
+	width: 100%;
+	height: 50px;
+	font-size: 16px;
+	font-family: "muliregular";
+	text-decoration: none;
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.login-modal a i{
+	color: #dedede;
+	font-size: 22px;
+	line-height: 15px;
+	position: relative;
+	top: 3px;
+	margin-left: 20px;
+	margin-right: 80px;
+}
+
+.banner{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 9% 0 11% 0;
+}
+
+.banner h1{
+	color: #eee;
+	font-family: "montserratregular";
+	font-size: 32px;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+}
+
+.banner p{
+	color: #eee;
+	letter-spacing: 0.05em;
+	margin-bottom: 25px;
+	font-size: 17px;
+}
+
+.search-field{
+	width: 100%;
+	max-width: 800px;
+	background: rgba(255,255,255,0.5);
+	height: 50px;
+	margin: 15px auto;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.input-container{
+	background: #fff;
+	width: calc(50% - 80px);
+	height: 100%;
+	float: left;
+}
+
+.input-container input{
+	width: calc(100% - 40px);
+	height: 100%;
+	padding: 2px 0;
+	outline: none;
+	font-size: 16px;
+	float: left;
+	border: 0;
+}
+
+.input-container:first-child{
+	border-right: 1px solid #ccc;
+}
+
+.input-container i{
+	float: left;
+	width: 40px;
+	height: 100%;
+	font-size: 18px;
+	padding: 12px 0;
+}
+
+.search-field a{
+	text-decoration: none;
+	outline: none;
+	width: 160px; 
+	height: 100%;
+	display: block;
+	float: left;
+	padding: 12px 5px;
+	color: #eee;
+	background: #DB4A3E;
+	font-size: 18px;
+}
+
