@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from django import forms
 
 # Create your views here.
@@ -34,4 +34,22 @@ def list(request):
         'index.html',
         {'documents': documents, 'form': form},
         context_instance=RequestContext(request)
+    )
+
+def login(request):
+    return render_to_response(
+            'login.html',
+            {}
+    )
+
+def index(request):
+    return render_to_response(
+            'index.html',
+            {}
+    )
+
+def gym_profile(request):
+    return render_to_response(
+            'gymProfile.html',
+            {}
     )
