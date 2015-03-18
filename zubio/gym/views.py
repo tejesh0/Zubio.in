@@ -31,7 +31,7 @@ def list(request):
 
     # Render list page with the documents and the form
     return render_to_response(
-        'gym-profile.html',
+        'index.html',
         {'documents': documents, 'form': form},
         context_instance=RequestContext(request)
     )
@@ -50,6 +50,6 @@ def index(request):
 
 def gym_profile(request):
     return render_to_response(
-            'gymProfile.html',
+            'gym-profile.html',
             {}
     )
