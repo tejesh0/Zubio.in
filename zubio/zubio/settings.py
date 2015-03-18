@@ -174,7 +174,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '..', 'static/media/').repl
 
 MEDIA_URL = '/media/'
 
-if DEBUG==True:
+if False:
     INTERNAL_IPS = ('127.0.0.1','localhost')
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',

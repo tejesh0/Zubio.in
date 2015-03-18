@@ -18,7 +18,8 @@
 		<nav class="overlay">
 			<div class="container">
 				<a href="#"><img src="/static/img/zubio-white.png" style="width: 90px"></a>
-				<a class="ghost-btn" href="#">Sign In</a>
+				<a class="ghost-btn" onclick="openModal('login-modal')">Sign In</a>
+				<a class="ghost-btn list-btn">List your center</a>
 			</div>
 		</nav>
 		<div class="overlay">
@@ -42,7 +43,7 @@
 		</div>
 	</article>
 
-	<section class="login-modal">
+	<section class="login-modal" id="login-modal">
 		<div class="overlay">
 			<div class="login-container">
 				<a href="#"><img src="/static/img/zubio-white.png" style="width: 120px"></a>
@@ -59,5 +60,6 @@
 
 	<script src="/static/js/jquery.min.js"></script>
 	<script src="/static/js/custom.js"></script>
+
 </body>
 </html>
