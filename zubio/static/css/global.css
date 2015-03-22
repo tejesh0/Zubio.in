@@ -102,6 +102,36 @@ a:hover, a:focus{
 	position: absolute;
 }
 
+.inverse-ghost-btn{
+	outline: none;
+	display: inline-block;
+	text-align: center;
+	padding: 8px 20px;
+	height: 38px;
+	min-width: 200px;
+	margin: 5px auto;
+	font-size: 16px;
+	font-family: "montserratregular";
+	color: #ff5a5f;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 1px;
+	-webkit-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+.grey-color{
+	color: #777;
+}
+
+.inverse-ghost-btn i{
+	margin: 0 10px 0 5px;
+}
+
+.inverse-ghost-btn:hover, .inverse-ghost-btn:focus{
+	color: #c0392b;
+} 
+
 .mask {
     position: fixed;
     top: 0;
