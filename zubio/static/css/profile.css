@@ -18,7 +18,7 @@ nav{
 	background: #fff;
 }
 
-.container{
+.profile-header .container, .profile-info .container{
 	max-width: 1000px;
 }
 
@@ -88,6 +88,7 @@ nav{
 
 .overview-box{
 	border-radius: 3px;
+	border: 1px solid #fafafa;
 	margin: 10px auto;
 	padding: 25px;
 	color: #888;
@@ -113,3 +114,38 @@ nav{
 .overview-box div:last-child{
 	border-right: none;
 }
+
+.user-favs{
+	margin-top: 6px;
+}
+
+.user-favs a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	margin-right: 2px;
+	background: #ccc;
+	border-radius: 4px;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.user-favs h4{
+	font-family: "montserratregular";
+	color: #888;
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+
+.user-favs span{
+	position: relative;
+	top: -9px;
+	left: 2px;
+	font-style: italic;
+	color: #888;
+}
+
+
+
+
