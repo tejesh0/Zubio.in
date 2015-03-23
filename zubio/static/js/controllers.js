@@ -1,0 +1,1 @@
+var zubioApp = angular.module('zubioApp', []);

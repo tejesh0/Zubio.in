@@ -1,9 +1,13 @@
-$(function() {
-	$('.search-field input').focus(function(){
-		$('.search-field').addClass('red-border');
-	});
+var body = document.body,
+mask = document.createElement("div");
 
-	$('.search-field input').focusout(function(){
-		$('.search-field').removeClass('red-border');
-	});
+var openModal = function(modal){
+	$('#'+modal).fadeIn();
+	$(mask).addClass("mask");
+	$(body).append($(mask));
+};
+
+$(mask).on("click", function(){
+	$('#login-modal').fadeOut();
+	$(mask).remove();
 });
