@@ -13,7 +13,12 @@ from django.core.urlresolvers import reverse
 from gym.models import Document
 from gym.forms import DocumentForm
 
-def list(request):
+def gym_listing_form(request):
+    """
+        Form available to subadmins to list a new gym after verification
+        of detailed escription of gym.
+
+    """
     # Handle file upload
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -54,4 +59,22 @@ def gym_profile(request):
             'gym-profile.html',
             {}
     )
+
+def search_listings(request):
+    """
+    assuming location will be provided in request variable from urlresolvers
+
+
+
+    """
+
+    #query postgresql database given location
+    #build a view as an abstract layer in models.py to get gyms based on location
+    #push each result to gyms dictionary
+
+
+
+    gyms = {}
+
+    return render_to_response('listings.html', {gyms:gyms})
 
