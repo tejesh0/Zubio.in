@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', gym.views.index),
-    url(r'^list/', gym.views.list),
+    url(r'^list/', gym.views.gym_listing_form),
     url(r'^login/', gym.views.login),
     url(r'^gymprofile/', gym.views.gym_profile),
     url(r'^index/', gym.views.index),
