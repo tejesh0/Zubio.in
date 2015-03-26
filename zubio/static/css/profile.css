@@ -29,6 +29,12 @@ nav{
 	color: #565A5C; 
 }
 
+h2{
+	font-family: "montserratregular";
+	color: #82888a;
+	font-size: 18px;
+}
+
 .profile-header a{
 	font-size: 14px;
 }
@@ -127,7 +133,6 @@ nav{
 	background: #ccc;
 	border-radius: 4px;
 	background-position: center center;
-	background-attachment: fixed;
 	background-size: cover;
 }
 
@@ -145,6 +150,129 @@ nav{
 	font-style: italic;
 	color: #888;
 }
+
+.detail-info{
+	margin: 10px auto;
+	color: #565a5c;
+	border-bottom: 1px solid #dce0e0; 
+	padding: 5px;
+}
+
+.detail-info:last-child{
+	border-bottom: 0;
+}
+
+.detail-info h4{
+	color: #82888a;
+	font-size: 16px;
+}
+
+.detail{
+	font-size: 14px;
+	padding: 10px;
+}
+
+.detail i{
+	margin-left: 4px;
+	color: #565a5c;
+}
+
+.detail span{
+	margin-left: 4px;
+}
+
+.user-review{
+	padding: 25px 10px;
+}
+
+.review-btn{
+	padding: 10px;
+	text-align: center;
+	background: #3498db;
+	width: 100%;
+	letter-spacing: 0.03em;
+	border-radius: 3px;
+	border-bottom: 2px solid #2980b9;
+	display: block;
+	font-family: "montserratregular";
+	margin: 20px auto;
+	color: #fff;
+	-webkit-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+.review-btn:hover, .review-btn:focus{
+	background: #2980b9;
+	color: #fff;
+}
+
+.review{
+	padding: 15px 0;
+	margin: 20px 0;
+}
+
+.review a.review-author{
+	margin-bottom: 10px;
+	border-radius: 50%;
+	width: 72px;
+	height: 72px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;  
+}
+
+.review a{
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	color: #82888a;
+	font-family: "montserratregular";
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.review div.col-md-10{
+	min-height: 124px;
+	position: relative;
+	border-bottom: 1px solid #f0f0f0;
+	color: #444;
+}
+
+.review span{
+	width: 100%;
+	display: block;
+	text-align: left;
+	margin: 10px 0;
+	color: #bbb;
+	font-size: 14px;
+	padding: 10px 0;
+}
+
+.review .response div.col-md-10{
+	min-height: 82px;
+	border: 0;
+	padding-bottom: 20px;
+}
+
+.review .response a.review-author{
+	width: 40px;
+	height: 40px;
+}
+
+.review .response a{
+	font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
