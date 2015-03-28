@@ -30,3 +30,7 @@ Pricing:
 
 Description:
 
+
+#Elasticsearch for Locations:
+
+Specify locality, city as name field
