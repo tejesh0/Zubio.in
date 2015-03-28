@@ -91,10 +91,10 @@ def api(request):
     if request.method == 'GET':
         q = request.GET.get('q',None)
         logger.error('Something went wrong!')
-        print q
         if not q:
             q = '*'
-        q = q+'*'
+        else:
+            q = q + '*'
     else:
         return HttpResponse("Learn to request !!~~!!")
     contents = []
@@ -104,8 +104,6 @@ def api(request):
             res_get =  result.get('_source', "")
 
             contents.append(res_get)
-        
-        print arr1
 
         return HttpResponse(json.dumps({"contents":contents}), content_type="application/json")
     except:
