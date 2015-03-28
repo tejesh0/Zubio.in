@@ -1,5 +1,14 @@
 from django.shortcuts import render,render_to_response
 from django import forms
+# import the logging library
+import logging
+from elasticsearch import Elasticsearch
+import json
+
+
+es = Elasticsearch()
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -56,7 +65,7 @@ def index(request):
 def gym_profile(request):
     return render_to_response(
 
-            'gym-profile.html',
+            'maps.html',
             {}
     )
 
@@ -71,10 +80,35 @@ def search_listings(request):
     #query postgresql database given location
     #build a view as an abstract layer in models.py to get gyms based on location
     #push each result to gyms dictionary
-
+    
 
 
     gyms = {}
 
     return render_to_response('listings.html', {gyms:gyms})
+
+def api(request):
+    if request.method == 'GET':
+        q = request.GET.get('q',None)
+        logger.error('Something went wrong!')
+        print q
+        if not q:
+            q = '*'
+        q = q+'*'
+    else:
+        return HttpResponse("Learn to request !!~~!!")
+    contents = []
+    try:
+        res = es.search(index='zubio',doc_type='locations', q=q)['hits']['hits']
+        for result in res:
+            res_get =  result.get('_source', "")
+
+            contents.append(res_get)
+        
+        print arr1
+
+        return HttpResponse(json.dumps({"contents":contents}), content_type="application/json")
+    except:
+        pass
+    return HttpResponse("rope in the wings")
 
