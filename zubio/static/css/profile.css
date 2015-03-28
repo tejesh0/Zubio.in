@@ -136,11 +136,16 @@ h2{
 	background-size: cover;
 }
 
-.user-favs h4{
+.user-favs h4, .review-form h4{
 	font-family: "montserratregular";
 	color: #888;
 	font-size: 14px;
 	margin-bottom: 3px;
+}
+
+.review-form h4{
+	margin-bottom: 20px;
+	padding: 0 15px;
 }
 
 .user-favs span{
@@ -201,7 +206,7 @@ h2{
 	transition: all .2s ease;
 }
 
-.review-btn:hover, .review-btn:focus{
+.review-btn:hover, .review-btn:focus, .review-form input:hover, .review-form input:focus{
 	background: #2980b9;
 	color: #fff;
 }
@@ -211,7 +216,7 @@ h2{
 	margin: 20px 0;
 }
 
-.review a.review-author{
+.review a.review-author, .review-form a.review-author{
 	margin-bottom: 10px;
 	border-radius: 50%;
 	width: 72px;
@@ -221,7 +226,12 @@ h2{
 	background-repeat: no-repeat;  
 }
 
-.review a{
+.review-form a.review-author{
+	width: 60px;
+	height: 60px;
+}
+
+.review a, .review-form a{
 	display: block;
 	text-align: center;
 	margin: 0 auto;
@@ -256,6 +266,7 @@ h2{
 
 .review .response a.review-author{
 	width: 40px;
+	display: block;
 	height: 40px;
 }
 
@@ -263,10 +274,56 @@ h2{
 	font-size: 12px;
 }
 
+.submit-review{
+	padding: 10px 0;
+}
 
 
+form.review-form{
+	width: 100%;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	border-bottom: 2px solid #ccc;
+	border-radius: 3px;
+	padding: 30px 10px;
+}
 
+.review-form textarea{
+	width: 100%;
+	height: 160px;
+	font-family: "muliregular";
+	padding: 5px 4px;
+	border: 0;
+	text-decoration: none;
+	outline: none;
+	resize: none;
+	background: #fafafa;
+	padding: 10px;
+	border-radius: 2px; 
+}
 
+.review-container{
+	border: 1px solid #ccc;
+}
+
+.review-form input{
+	float: right;
+	display: block;
+	margin-top: 10px;
+	text-decoration: none;
+	outline: none;
+	padding: 5px 15px;
+	letter-spacing: 0.03em;
+	background: #3498DB;
+	color: #fff;
+	border: 0;
+	letter-spacing: 0.03em;
+	border-radius: 3px;
+	border-bottom: 2px solid #2980b9;
+	-webkit-transition: all .2s ease;
+	transition: all .2s ease;
+}
 
 
 
