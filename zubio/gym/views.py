@@ -65,7 +65,7 @@ def index(request):
 def gym_profile(request):
     return render_to_response(
 
-            'maps.html',
+            'gym-profile.html',
             {}
     )
 
