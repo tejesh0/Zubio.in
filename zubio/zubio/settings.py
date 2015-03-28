@@ -38,30 +38,30 @@ INSTALLED_APPS = (
     'gym',
     # 'users_zubio',
     # 'postman',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     # # Provider Specific Accounts
-    # #'allauth.socialaccount.providers.amazon',
-    # #'allauth.socialaccount.providers.angellist',
-    # #'allauth.socialaccount.providers.bitbucket',
-    # # 'allauth.socialaccount.providers.bitly',
-    # # 'allauth.socialaccount.providers.dropbox',
-    # 'allauth.socialaccount.providers.facebook',
-    # # 'allauth.socialaccount.providers.flickr',
-    # # 'allauth.socialaccount.providers.feedly',
-    # #'allauth.socialaccount.providers.github',
-    # 'allauth.socialaccount.providers.google',
-    # # 'allauth.socialaccount.providers.instagram',
-    # # 'allauth.socialaccount.providers.linkedin',
-    # 'allauth.socialaccount.providers.linkedin_oauth2',
-    # 'allauth.socialaccount.providers.openid',
-    #'allauth.socialaccount.providers.persona',
-    #'allauth.socialaccount.providers.soundcloud',
-    #'allauth.socialaccount.providers.stackexchange',
-    # 'allauth.socialaccount.providers.tumblr',
-    # 'allauth.socialaccount.providers.twitch',
-    # 'allauth.socialaccount.providers.twitter',
+    #'allauth.socialaccount.providers.amazon',
+    #'allauth.socialaccount.providers.angellist',
+    #'allauth.socialaccount.providers.bitbucket',
+    # 'allauth.socialaccount.providers.bitly',
+    # 'allauth.socialaccount.providers.dropbox',
+    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.flickr',
+    # 'allauth.socialaccount.providers.feedly',
+    #'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.linkedin_oauth2',
+    'allauth.socialaccount.providers.openid',
+    'allauth.socialaccount.providers.persona',
+    'allauth.socialaccount.providers.soundcloud',
+    'allauth.socialaccount.providers.stackexchange',
+    'allauth.socialaccount.providers.tumblr',
+    'allauth.socialaccount.providers.twitch',
+    'allauth.socialaccount.providers.twitter',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,8 +83,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.core.context_processors.request',    
     'django.contrib.messages.context_processors.messages',
-    # 'allauth.account.context_processors.account',
-    # 'allauth.socialaccount.context_processors.socialaccount',
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
     'django.core.context_processors.request',
 )
 
@@ -92,7 +92,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 
@@ -107,7 +107,7 @@ TEMPLATE_DIRS = (
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    # 'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 
@@ -121,8 +121,13 @@ WSGI_APPLICATION = 'zubio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'zubiodb',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'tejesh95',
+        'PASSWORD': 'oibuzlabs',
+        'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     }
 }
 
@@ -166,7 +171,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # 'dajaxice.finders.DajaxiceFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+   # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 SITE_ID = 2
 
@@ -174,7 +179,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '..', 'static/media/').repl
 
 MEDIA_URL = '/media/'
 
-if False:
+if True:
     INTERNAL_IPS = ('127.0.0.1','localhost')
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -202,3 +207,10 @@ if False:
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
     }
+import os
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
