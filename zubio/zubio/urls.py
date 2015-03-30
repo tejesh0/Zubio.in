@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^gymprofile/', gym.views.gym_profile),
     url(r'^index/', gym.views.index),
     url(r'^zubio/locations/', gym.views.api),
+
 )
 
