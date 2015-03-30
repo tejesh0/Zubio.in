@@ -178,7 +178,7 @@
 	border-right: 1px solid #ccc;
 }
 
-.input-container i{
+.input-container i.search-icon{
 	float: left;
 	width: 40px;
 	height: 100%;
@@ -195,6 +195,7 @@
 	float: left;
 	padding: 12px 5px;
 	color: #eee;
+	cursor: pointer;
 	background: #DB4A3E;
 	font-size: 18px;
 }
@@ -234,10 +235,6 @@
 }
 
 .angucomplete-dropdown {
-    border-color: #ececec;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 1px;
     width: 100%;
     padding: 0;
     cursor: pointer;
@@ -248,6 +245,9 @@
     text-align: left;
     margin-top: -6px;
     background-color: #ffffff;
+    border-bottom: 2px solid #dedede;
+    border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
 }
 
 .angucomplete-searching {
@@ -262,31 +262,57 @@
 }
 
 .angucomplete-row {
-    padding: 6px 6px 6px 20px;
-    color: #000000;
+    padding: 8px 6px 8px 20px;
+    color: #424242;
     clear: both;
+    border-bottom: 1px solid #fafafa;
 }
 
-.angucomplete-selected-row {
+.angucomplete-selected-row, .query-dropdown ul li:hover, .query-dropdown ul li:focus{
     background-color: #3498db;
     color: #ffffff;
 }
 
-.angucomplete-image-holder {
-    padding-top: 2px;
-    float: left;
-    margin-right: 10px;
-    margin-left: 5px;
+/* ==== Search Query Dropdown ==== */
+
+.query-dropdown{
+	display: none;
+	background: #fff;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	margin-top: 50px;
 }
 
-.angucomplete-image {
-    height: 34px;
-    width: 34px;
-    border-radius: 50%;
-    border-color: #ececec;
-    border-style: solid;
-    border-width: 1px;
+.query-dropdown h3{
+	font-family: "montserratregular";
+	font-size: 11px;
+	margin: 0;
+	padding: 4px 10px;
+	color: #666;
+	text-align: left;
+	border-bottom: 1px solid #fafafa;
 }
+
+.query-dropdown ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-bottom: 2px solid #dedede;
+}
+
+.query-dropdown ul i{
+	margin: 0 10px;
+}
+
+.query-dropdown ul li{
+	cursor: pointer;
+	padding: 8px 6px;
+	border-bottom: 1px solid #fafafa;
+	text-align: left;
+	font-size: 16px;
+	color: #424242;
+}
+
 
 
 
