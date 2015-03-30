@@ -16,9 +16,13 @@
 <body>
 
 	<nav>
-		<div class="container">
-			<a href="#"><img src="/static/img/zubio-logo.png" style="width: 80px"></a>
+		<div class="container clearfix">
+			<a id="logo" href="#"><img src="/static/img/zubio-logo.png" style="width: 80px"></a>
 			<a class="primary-btn nav-action-btn" title="Sign in" onclick="openModal('login-modal')">Sign In</a>
+			<form method="GET" action="/search" autocomplete="off" class="clearfix search-bar">
+				<i class="flaticon-search74"></i>
+				<input type="text" name="query" placeholder="Search for fitness centers">
+			</form>
 		</div>
 	</nav>
 
