@@ -1,3 +1,10 @@
+from django.shortcuts import render_to_response, HttpResponse
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
+from gym.models import Document
+from gym.forms import DocumentForm
 from django.shortcuts import render,render_to_response
 from django import forms
 # import the logging library
@@ -10,17 +17,6 @@ es = Elasticsearch()
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-# Create your views here.
-
-
-# -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, HttpResponse
-from django.template import RequestContext
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-
-from gym.models import Document
-from gym.forms import DocumentForm
 
 def gym_listing_form(request):
     """
@@ -33,10 +29,19 @@ def gym_listing_form(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             newdoc = Document(docfile = request.FILES['docfile'])
+            # print form
+            print request
+            # print form.title  
+            address = request.POST['address']
+            print address
+            title = request.POST['title']
+            es.create(index='gym_profile', doc_type='listings', body={'adrress':address, 'title':title })
             newdoc.save()
 
+            fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
+
             # Redirect to the document list after POST
-            return HttpResponse("lol")
+            return HttpResponse(json.dumps({'fulltext':fulltext}))
     else:
         form = DocumentForm() # A empty, unbound form
 
@@ -45,7 +50,7 @@ def gym_listing_form(request):
 
     # Render list page with the documents and the form
     return render_to_response(
-        'index.html',
+        'list.html',
         {'documents': documents, 'form': form},
         context_instance=RequestContext(request)
     )

@@ -10,3 +10,6 @@ class Document(models.Model):
 	# offerings = forms.ChoiceField(choices=[('spa','spa'),('gym','gym')])
 	docfile = models.FileField(upload_to='documents/%Y/%m/%d')
     
+class GymForm(models.Model):
+	title = models.CharField(max_length=50,default="Gym")
+	description = models.CharField(max_length=500, default="Description")
