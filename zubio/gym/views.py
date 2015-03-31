@@ -37,7 +37,8 @@ def gym_listing_form(request):
             title = request.POST['title']
             print description
             description = request.POST['description']
-            es.create(index='gym_profile', doc_type='listings', body={'adrress':address, 'title':title, 'description':description })
+            body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
+            es.create(index='gym_profile', doc_type='listings', body=body)
             newdoc.save()
 
             fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
@@ -83,6 +84,16 @@ def search_listings(request):
 
 
     """
+    query = request.GET('query',None)
+    location = request.GET('location', None)
+
+    body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
+    es.create(index='gym_profile', doc_type='listings', body=body)
+
+    fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
+
+    # Redirect to the document list after POST
+    # return HttpResponse(json.dumps({'fulltext':fulltext}))
 
     #query postgresql database given location
     #build a view as an abstract layer in models.py to get gyms based on location
