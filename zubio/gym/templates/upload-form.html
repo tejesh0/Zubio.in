@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Fitness Center Upload Form</title>
+
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/global.css">
+	<link rel="stylesheet" href="/static/css/fonts.css">
+	<link rel="stylesheet" href="/static/css/upload-form.css">
+	<link rel="stylesheet" href="/static/css/icons.css">
+</head>
+<body>
+	
+	<article class="container">
+		<form method="POST" action="/upload">
+		<img src="/static/img/zubio-logo.png" style="width: 120px">
+		<h1>Fitness Center Upload Form</h1>
+		<div class="form-container">
+			<label for="fitName">Name of the Fitness center:</label>
+			<input id="fitName" type="text" name="fitName" placeholder="Enter the Fitness center name">
+
+			<label for="address">Address:</label>
+			<input id="address" type="text" name="address" placeholder="Enter the Address">
+
+			<label for="contact">Contact:</label>
+			<input id="contact" type="text" name="contact" placeholder="Enter contact number">
+
+			<label for="email">Email:</label>
+			<input id="email" type="text" name="email" placeholder="Enter the email">
+
+			<label for="ownerName">Owner's Name:</label>
+			<input id="ownerName" type="text" name="ownerName" placeholder="Owner Name">
+			
+
+			<div class="timings">
+				<h2>Timings</h2>
+				<label for="day1">From: </label>
+				<select id="day1" name="day1">
+					<option>Mon</option>
+					<option>Tue</option>
+					<option>Wed</option>
+					<option>Thu</option>
+					<option>Fri</option>
+					<option>Sat</option>
+					<option>Sun</option>
+				</select>
+
+				<label for="day2">To: </label>
+				<select id="day2" name="day2">
+					<option>Mon</option>
+					<option>Tue</option>
+					<option>Wed</option>
+					<option>Thu</option>
+					<option>Fri</option>
+					<option>Sat</option>
+					<option>Sun</option>
+				</select>
+				<br/>
+				<label for="time">Time</label>
+				<input type="time" id="time" name="time" placeholder="Enter time">
+				<span>to</span>
+				<input type="time" name="time" placeholder="Enter time">
+
+				<br><br><br>
+
+				<label for="day1">From: </label>
+				<select id="day1" name="day1">
+					<option>Mon</option>
+					<option>Tue</option>
+					<option>Wed</option>
+					<option>Thu</option>
+					<option>Fri</option>
+					<option>Sat</option>
+					<option>Sun</option>
+				</select>
+
+				<label for="day2">To: </label>
+				<select id="day2" name="day2">
+					<option>Mon</option>
+					<option>Tue</option>
+					<option>Wed</option>
+					<option>Thu</option>
+					<option>Fri</option>
+					<option>Sat</option>
+					<option>Sun</option>
+				</select>
+				<br/>
+				<label for="time">Time</label>
+				<input type="time" id="time" name="time" placeholder="Enter time">
+				<span>to</span>
+				<input type="time" name="time" placeholder="Enter time">
+			</div>
+
+			<div class="pricing">
+				<h2>Pricing</h2>
+				<label for="monthly">Monthly</label>
+				<input name="monthly" id="monthly" placeholder="Enter monthly">
+				<label for="quarterly">Quarterly</label>
+				<input name="quarterly" id="quarterly" placeholder="Enter quarterly">
+				<label for="half-yearly">Half-yearly</label>
+				<input name="half-yearly" id="half-yearly" placeholder="Enter half-yearly">
+				<label for="yearly">Yearly</label>
+				<input name="yearly" id="yearly" placeholder="Enter yearly">
+			</div>
+
+			<div class="facilities">
+			<label for="membership">Membership</label>
+			<select id="membership" name="membership">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+
+			<label for="AC">AC</label>
+			<select id="AC" name="AC">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+
+			<label for="Wi-Fi">Wi-Fi</label>
+			<select id="Wi-Fi" name="Wi-Fi">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+
+			<label for="Locker">Locker</label>
+			<select id="Locker" name="Locker">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+
+			<label for="Parking">Parking</label>
+			<select id="Parking" name="Parking">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+
+			<label for="Personal Trainer">Personal Trainer</label>
+			<select id="Personal Trainer" name="Personal Trainer">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+
+			<label for="Certified-Trainer">Certified Trainer</label>
+			<select id="Certified-Trainer" name="Certified-Trainer">
+				<option>Yes</option>
+				<option>No</option>
+			</select>
+			</div>
+
+			<label for="desc">Description</label>
+			<textarea id="desc" name="desc">Love the Gym. Good equipment, hot trainers.</textarea>
+
+			<button type="submit">Submit</button>
+
+			</div>
+		</form>	
+	</article>
+
+</body>
+</html>

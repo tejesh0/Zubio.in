@@ -38,20 +38,20 @@
 						</div>	
 						<div class="input-container ">
 							<i class="search-icon flaticon-search74"></i>
-							<input type="text" name="query" ng-click="show('.query-dropdown'); $event.stopPropagation();" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
+							<input type="text" name="query" ng-focus="show('.query-dropdown')" ng-click="show('.query-dropdown'); $event.stopPropagation();" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
 							<div class="query-dropdown">
 								<h3>SUGGESTED SEARCHES</h3>
 								<ul>
-									<li ng-click="search('gym')"><i class="flaticon-barbell"></i>Gyms</li>
-									<li ng-click="search('spa')"><i class="flaticon-beach13"></i>Spas</li>
-									<li ng-click="search('yoga center')"><i class="flaticon-guru1"></i>Yoga Centers</li>
-									<li ng-click="search('personal trainers')"><i class="flaticon-weightlift"></i>Personal Trainers</li>
-									<li ng-click="search('salons')"><i class="flaticon-scissors37"></i>Salons</li>
+									<li><a ng-click="search('gym')"><i class="flaticon-barbell"></i>Gyms</a></li>
+									<li><a ng-click="search('spa')"><i class="flaticon-beach13"></i>Spas</a></li>
+									<li><a ng-click="search('yoga center')"><i class="flaticon-guru1"></i>Yoga Centers</a></li>
+									<li><a ng-click="search('personal trainers')"><i class="flaticon-weightlift"></i>Personal Trainers</a></li>
+									<li><a ng-click="search('salons')"><i class="flaticon-scissors37"></i>Salons</a></li>
 								</ul>
 							</div>
 						</div>
 
-						<a ng-click="search()">Search</a>
+						<a class="search-btn" ng-click="search()">Search</a>
 					</div>
 				</form>
 			</div>
@@ -75,7 +75,7 @@
 
 	<article class="discover-intro">
 		<h2>Explore your neighbourhood</h2>
-		<p>Find fitness centers, spas and saloons around you</p>
+		<p>Find fitness centers, spas and salons around you</p>
 		<div class="container">
 			<div class="col-md-8">
 				<div class="discovery-card" style="background-image: url(/static/img/gym2.jpg);">

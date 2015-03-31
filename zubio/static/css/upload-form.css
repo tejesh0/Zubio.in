@@ -1,0 +1,97 @@
+form{
+	max-width: 700px;
+	margin: 30px auto;
+	padding: 30px 0;
+	border-radius: 2px;
+	background: #fafafa;
+}
+
+img{
+	display: block;
+	margin: 0 auto;
+}
+
+label{
+	font-weight: normal;
+	text-align: left;
+	margin-top: 15px;
+}
+
+.form-container{
+	margin: 0 auto;
+	max-width: 500px;
+	font-family: "montserratregular";
+}
+
+h1{
+	text-align: center;
+	margin: 30px auto;
+}
+
+h2{
+	font-size: 18px;
+}
+
+.form-container input{
+	padding: 4px 8px;
+	height: 40px;
+	text-decoration: none;
+	outline: none;
+	border: 0;
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+.timings, .pricing{
+	border: 1px solid #ddd;
+	margin-top: 20px;
+	padding: 20px;
+}
+
+input[type="time"]{
+	width: 100px;
+}
+
+textarea{
+	width: 100%;
+	height: 160px;
+	resize: none;
+}
+
+button{
+	text-decoration: none;
+	outline: none;
+	border: 0;
+	letter-spacing: 0.03em;
+	border-radius: 3px;
+	border-bottom: 2px solid #2980b9;
+	width: 100%;
+	padding: 3px 8px;
+	margin-top: 20px;
+	background: #3498db;
+	color: #fff;
+}
+
+button:hover, button:focus{
+	background: #2980b9;
+	color: #fff;	
+}
+
+.facilities{
+	max-width: 200px;
+}
+
+.facilities select{
+	width: 100%;
+}
+
+.pricing input{
+	margin-top: 10px;
+}
+
+.form-container select{
+	text-decoration: none;
+	outline: none;
+	border: 0;
+	border: 1px solid #ccc;
+}
