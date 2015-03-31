@@ -7,9 +7,9 @@ from django import forms
 class Document(models.Model):
 	title = models.CharField(max_length=50, default="please fill")
 	address = models.CharField(max_length=500,default="please fill")
+	description = models.CharField(max_length=500, default="Description")
 	# offerings = forms.ChoiceField(choices=[('spa','spa'),('gym','gym')])
 	docfile = models.FileField(upload_to='documents/%Y/%m/%d')
     
-class GymForm(models.Model):
-	title = models.CharField(max_length=50,default="Gym")
-	description = models.CharField(max_length=500, default="Description")
+# class GymForm(models.Model):
+# 	title = models.CharField(max_length=50,default="Gym")

@@ -35,7 +35,9 @@ def gym_listing_form(request):
             address = request.POST['address']
             print address
             title = request.POST['title']
-            es.create(index='gym_profile', doc_type='listings', body={'adrress':address, 'title':title })
+            print description
+            description = request.POST['description']
+            es.create(index='gym_profile', doc_type='listings', body={'adrress':address, 'title':title, 'description':description })
             newdoc.save()
 
             fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
