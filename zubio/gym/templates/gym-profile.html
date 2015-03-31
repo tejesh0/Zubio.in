@@ -7,18 +7,19 @@
 	<title>Zubio - Discover Gyms and Fitness centers around you</title>
 	
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/blueimp-gallery.min.css">
 	<link rel="stylesheet" href="/static/css/global.css">
 	<link rel="stylesheet" href="/static/css/profile.css">
 	<link rel="stylesheet" href="/static/css/fonts.css">
 	<link rel="stylesheet" href="/static/css/icons.css">
 
+	<script type="text/javascript" src="/static/js/blueimp-gallery.min.js"></script>
 </head>
 <body>
-
 	<nav>
 		<div class="container clearfix">
 			<a id="logo" href="#"><img src="/static/img/zubio-logo.png" style="width: 80px"></a>
-			<a class="primary-btn nav-action-btn" title="Sign in" onclick="openModal('login-modal')">Sign In</a>
+			<a class="primary-btn nav-action-btn" title="Sign In">Sign In</a>
 			<form method="GET" action="/search" autocomplete="off" class="clearfix search-bar">
 				<i class="flaticon-search74"></i>
 				<input type="text" name="query" placeholder="Search for fitness centers">
@@ -28,6 +29,16 @@
 
 	<div class="profile-banner" style="background-image: url(/static/img/gym4.jpg);"></div>
 	
+	<div id="blueimp-gallery" class="blueimp-gallery">
+	    <div class="slides"></div>
+	    <h3 class="title"></h3>
+	    <a class="prev">‹</a>
+	    <a class="next">›</a>
+	    <a class="close">×</a>
+	    <a class="play-pause"></a>
+	    <ol class="indicator"></ol>
+	</div>
+
 	<article class="profile-header">
 		<div class="container">
 			<div class="col-md-9 col-sm-8">
@@ -76,6 +87,26 @@
 						<i class="flaticon-business133"></i>
 						<p>Membership Available</p>
 					</div>
+				</div>
+
+				<div id="links" class="fitness-gallery clearfix">
+					<h2>Gallery</h2>
+					<a class="wid-2" href="/static/img/gym.jpg" style="background:url('/static/img/gym.jpg')">
+					</a>
+					<a class="wid-2" href="/static/img/gym2.jpg" style="background:url('/static/img/gym2.jpg')">
+					</a>
+					<a class="wid-3" href="/static/img/gym3.jpg" style="background:url('/static/img/gym3.jpg')">
+					</a>
+					<a class="wid-3" href="/static/img/gym4.jpg" style="background:url('/static/img/gym4.jpg')">
+					</a>
+					<a class="wid-3" href="/static/img/gym5.jpg" style="background:url('/static/img/gym5.jpg')">
+					</a>
+					<a class="no-show" href="/static/img/me.jpg">
+					</a>
+					<a class="no-show" href="/static/img/gym4.jpg">
+					</a>
+					<a class="no-show" href="/static/img/gym5.jpg">
+					</a>
 				</div>
 				
 				<div class="detail-info clearfix">
@@ -139,7 +170,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -198,6 +228,15 @@
 			</div>
 		</div>
 	</article>
-
+	<script>
+		document.getElementById('links').onclick = function (event) {
+		    event = event || window.event;
+		    var target = event.target || event.srcElement,
+		        link = target.src ? target.parentNode : target,
+		        options = {index: link, event: event},
+		        links = this.getElementsByTagName('a');
+		    blueimp.Gallery(links, options);
+		};
+	</script>
 </body>
 </html>
