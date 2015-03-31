@@ -38,7 +38,7 @@
 						</div>	
 						<div class="input-container ">
 							<i class="search-icon flaticon-search74"></i>
-							<input type="text" name="query" ng-click="show('.query-dropdown'); $event.stopPropogation();" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
+							<input type="text" name="query" ng-click="show('.query-dropdown'); $event.stopPropagation();" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
 							<div class="query-dropdown">
 								<h3>SUGGESTED SEARCHES</h3>
 								<ul>
@@ -89,5 +89,10 @@
 			</div>
 		</div>
 	</article>
+	<script>
+	$('body').on('click', function(){
+		angular.element($('body')).scope().hide('.query-dropdown');
+	});
+	</script>
 </body>
 </html>
