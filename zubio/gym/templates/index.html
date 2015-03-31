@@ -17,7 +17,7 @@
 	<script src="/static/js/app.js"></script>
 
 </head>
-<body>
+<body ng-controller="homeCtrl">
 
 	<article class="landing-banner" style="background-image: url(/static/img/gym.jpg);">
 		<nav class="overlay">
@@ -30,19 +30,30 @@
 			<div class="banner container">
 				<h1>Discover Gyms and Fitness centers around you.</h1>
 				<p>Explore gyms, spa, yoga and dance classes in your neighbourhood.</p>
-				<div class="search-field">
-					<div class="input-container clearfix">
-						<i class="flaticon-big104"></i>
-						<div class="auto-complete" angucomplete-alt placeholder="Search projects" pause="500" selected-object="selectedProject" remote-url="/zubio/locations/_search?q=" remote-url-request-formatter="remoteUrlRequestFn" remote-url-data-field="contents" search-fields="name" title-field="name" description-field="description" minlength="2" match-class="highlight"></div>
-					</div>	
-					<div class="input-container ">
-						<i class="flaticon-search74"></i>
-						<input type="text" placeholder="Choose your fitness option">
-					</div>
+				<form id="searchForm" method="GET" action="/search" autocomplete="off">
+					<div class="search-field">
+						<div class="input-container clearfix" ng-click="hide('.query-dropdown')">
+							<i class="search-icon flaticon-big104"></i>
+							<div class="auto-complete" angucomplete-alt placeholder="Search projects" pause="500" selected-object="selectedProject" remote-url="/zubio/locations/_search?q=" remote-url-request-formatter="remoteUrlRequestFn" remote-url-data-field="contents" search-fields="name" title-field="name" description-field="description" minlength="2" match-class="highlight"></div>
+						</div>	
+						<div class="input-container ">
+							<i class="search-icon flaticon-search74"></i>
+							<input type="text" name="query" ng-click="show('.query-dropdown')" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
+							<div class="query-dropdown">
+								<h3>SUGGESTED SEARCHES</h3>
+								<ul>
+									<li ng-click="search('gym')"><i class="flaticon-barbell"></i>Gyms</li>
+									<li ng-click="search('spa')"><i class="flaticon-beach13"></i>Spas</li>
+									<li ng-click="search('yoga center')"><i class="flaticon-guru1"></i>Yoga Centers</li>
+									<li ng-click="search('personal trainers')"><i class="flaticon-weightlift"></i>Personal Trainers</li>
+									<li ng-click="search('salons')"><i class="flaticon-scissors37"></i>Salons</li>
+								</ul>
+							</div>
+						</div>
 
-					<a href="#">Search</a>
-				</div>
-				
+						<a ng-click="search()">Search</a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</article>
@@ -78,6 +89,5 @@
 			</div>
 		</div>
 	</article>
-
 </body>
 </html>
