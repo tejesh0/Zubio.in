@@ -4,3 +4,28 @@ nav{
 	padding: 2px 0;
 	border-bottom: 1px solid #eee;
 }
+
+.trainer-header{
+	height: 500px;
+	background: #ededed;
+}
+
+.trainer{
+	text-align: center;
+}
+
+.trainer-img{
+	margin: 50px auto;
+	display: block;
+	margin-bottom: 10px;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.trainer p{
+	font-size: 18px;
+}

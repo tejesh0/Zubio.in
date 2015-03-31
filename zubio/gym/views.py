@@ -83,6 +83,13 @@ def upload_form(request):
             {}
     )
 
+def trainer_profile(request):
+    return render_to_response(
+
+            'trainer-profile.html',
+            {}
+    )
+
 def search_listings(request):
     """
     assuming location will be provided in request variable from urlresolvers
