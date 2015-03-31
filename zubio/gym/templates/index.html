@@ -32,13 +32,13 @@
 				<p>Explore gyms, spa, yoga and dance classes in your neighbourhood.</p>
 				<form id="searchForm" method="GET" action="/search" autocomplete="off">
 					<div class="search-field">
-						<div class="input-container clearfix" ng-click="hide('.query-dropdown')">
+						<div class="input-container clearfix">
 							<i class="search-icon flaticon-big104"></i>
 							<div class="auto-complete" angucomplete-alt placeholder="Search projects" pause="500" selected-object="selectedProject" remote-url="/zubio/locations/_search?q=" remote-url-request-formatter="remoteUrlRequestFn" remote-url-data-field="contents" search-fields="name" title-field="name" description-field="description" minlength="2" match-class="highlight"></div>
 						</div>	
 						<div class="input-container ">
 							<i class="search-icon flaticon-search74"></i>
-							<input type="text" name="query" ng-click="show('.query-dropdown')" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
+							<input type="text" name="query" ng-click="show('.query-dropdown'); $event.stopPropagation();" ng-model="query" ng-change="hide('.query-dropdown')" style="cursor:pointer" placeholder="Choose your fitness option">
 							<div class="query-dropdown">
 								<h3>SUGGESTED SEARCHES</h3>
 								<ul>
@@ -89,5 +89,10 @@
 			</div>
 		</div>
 	</article>
+	<script>
+	$('body').on('click', function(){
+		angular.element($('body')).scope().hide('.query-dropdown');
+	});
+	</script>
 </body>
 </html>
