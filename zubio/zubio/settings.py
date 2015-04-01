@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
+# ADMINS = (('zubio', 'tejeshpapineni95@gmail.com'),)
+# MANAGERS = ADMINS
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -23,6 +24,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','zubio.in']
+
 
 
 # Application definition
@@ -178,6 +180,38 @@ SITE_ID = 2
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '..', 'static/media/').replace('\\','/')
 
 MEDIA_URL = '/media/'
+
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 
+# EMAIL_HOST_PASSWORD = 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER    
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+    }
 
 if False:
     INTERNAL_IPS = ('127.0.0.1','localhost')

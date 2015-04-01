@@ -26,8 +26,11 @@ def gym_listing_form(request):
     """
     # Handle file upload
     if request.method == 'POST':
+
         form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
+        print "pst"
+        print form
+        if form:
             newdoc = Document(docfile = request.FILES['docfile'])
             # print form
             print request
@@ -35,8 +38,9 @@ def gym_listing_form(request):
             address = request.POST['address']
             print address
             title = request.POST['title']
-            print description
+            
             description = request.POST['description']
+            print description
             body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
             es.create(index='gym_profile', doc_type='listings', body=body)
             newdoc.save()
