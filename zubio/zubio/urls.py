@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^gymprofile/', gym.views.gym_profile),
     url(r'^index/', gym.views.index),
     url(r'^zubio/locations/', gym.views.api),
+    url(r'^upload/', gym.views.upload_form),
+    url(r'^trainer/', gym.views.trainer_profile)  
 
 )
 
