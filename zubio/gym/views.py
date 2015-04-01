@@ -3,8 +3,8 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from gym.models import Document
-from gym.forms import DocumentForm
+from gym.models import FitnessListing,FitnessListingForm
+# from gym.forms import DocumentForm
 from django.shortcuts import render,render_to_response
 from django import forms
 # import the logging library
@@ -24,14 +24,15 @@ def gym_listing_form(request):
         of detailed escription of gym.
 
     """
-    # Handle file upload
+
+    # Handle file upload 
     if request.method == 'POST':
 
-        form = DocumentForm(request.POST, request.FILES)
+        form = FitnessListingForm(request.POST, request.FILES)
         print "pst"
         print form
-        if form:
-            newdoc = Document(docfile = request.FILES['docfile'])
+        if form.is_valid():
+            newdoc = FitnessListing(docfile = request.FILES['docfile'])
             # print form
             print request
             # print form.title  
@@ -50,10 +51,10 @@ def gym_listing_form(request):
             # Redirect to the document list after POST
             return HttpResponse(json.dumps({'fulltext':fulltext}))
     else:
-        form = DocumentForm() # A empty, unbound form
+        form = FitnessListingForm() # A empty, unbound form
 
     # Load documents for the list page
-    documents = Document.objects.all()
+    documents = FitnessListing.objects.all()
 
     # Render list page with the documents and the form
     return render_to_response(
