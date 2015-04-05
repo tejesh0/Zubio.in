@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response, HttpResponse
+from django.http import HttpRequest
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -107,13 +108,16 @@ def search_listings(request):
 
 
     """
-    # query = request.GET('query',None)
-    # location = request.GET('location', None)
+    # print http.request
+    if request.method == 'GET':
+        print "get request tj {}".format(request.GET.get('query'))
+        q = request.GET.get('query',None)
+        l = request.GET.get('locality', None)
 
     body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
     es.create(index='gym_profile', doc_type='listings', body=body)
 
-    fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
+    fulltext = es.search(index='gym_profile', doc_type='listings', q=q+" "+l)
 
     # Redirect to the document list after POST
     return HttpResponse(json.dumps({'fulltext':fulltext}))
