@@ -114,21 +114,16 @@ def search_listings(request):
         q = request.GET.get('query',None)
         l = request.GET.get('locality', None)
 
-    body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
-    es.create(index='gym_profile', doc_type='listings', body=body)
+        body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
+        es.create(index='gym_profile', doc_type='listings', body=body)
 
-    fulltext = es.search(index='gym_profile', doc_type='listings', q=q+" "+l)
+        fulltext = es.search(index='gym_profile', doc_type='listings', q=q+" "+l)
 
-    # Redirect to the document list after POST
-    return HttpResponse(json.dumps({'fulltext':fulltext}))
-
-    #query postgresql database given location
-    #build a view as an abstract layer in models.py to get gyms based on location
-    #push each result to gyms dictionary
-    
+        # Redirect to the document list after POST
+        return render_to_response('listings.html', {'results':fulltext})
+        # return HttpResponse(json.dumps({'fulltext':fulltext}))
 
 
-    gyms = {}
 
     return render_to_response('listings.html', {gyms:gyms})
 
