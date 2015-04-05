@@ -1,10 +1,11 @@
 from django.shortcuts import render_to_response, HttpResponse
+from django.http import HttpRequest
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from gym.models import Document
-from gym.forms import DocumentForm
+from gym.models import FitnessListing,FitnessListingForm
+# from gym.forms import DocumentForm
 from django.shortcuts import render,render_to_response
 from django import forms
 # import the logging library
@@ -24,31 +25,41 @@ def gym_listing_form(request):
         of detailed escription of gym.
 
     """
-    # Handle file upload
+
+    # Handle file upload 
     if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
+
+        form = FitnessListingForm(request.POST, request.FILES)
+        print "pst"
+        print form
         if form.is_valid():
-            newdoc = Document(docfile = request.FILES['docfile'])
+            g = FitnessListing(Gallery = request.FILES['Gallery'])
             # print form
             print request
             # print form.title  
-            address = request.POST['address']
+            address = request.POST['Address']
             print address
-            title = request.POST['title']
+            title = request.POST['Name_Of_The_Fitness_Center']
+            
+            description = request.POST['Description']
             print description
-            description = request.POST['description']
-            es.create(index='gym_profile', doc_type='listings', body={'adrress':address, 'title':title, 'description':description })
-            newdoc.save()
+
+            # print g
+            store = {"description":description, "title":title,"address":address}
+            es.create(index='gym_profile', doc_type='listings', body=store)
+            body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
+            
+            g.save()
 
             fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
 
             # Redirect to the document list after POST
             return HttpResponse(json.dumps({'fulltext':fulltext}))
     else:
-        form = DocumentForm() # A empty, unbound form
+        form = FitnessListingForm() # A empty, unbound form
 
     # Load documents for the list page
-    documents = Document.objects.all()
+    documents = FitnessListing.objects.all()
 
     # Render list page with the documents and the form
     return render_to_response(
@@ -97,14 +108,22 @@ def search_listings(request):
 
 
     """
+    # print http.request
+    if request.method == 'GET':
+        print "get request tj {}".format(request.GET.get('query'))
+        q = request.GET.get('query',None)
+        l = request.GET.get('locality', None)
 
-    #query postgresql database given location
-    #build a view as an abstract layer in models.py to get gyms based on location
-    #push each result to gyms dictionary
-    
+        body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
+        es.create(index='gym_profile', doc_type='listings', body=body)
+
+        fulltext = es.search(index='gym_profile', doc_type='listings', q=q+" "+l)
+
+        # Redirect to the document list after POST
+        return render_to_response('listings.html', {'results':fulltext})
+        # return HttpResponse(json.dumps({'fulltext':fulltext}))
 
 
-    gyms = {}
 
     return render_to_response('listings.html', {gyms:gyms})
 
