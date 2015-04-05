@@ -32,19 +32,23 @@ def gym_listing_form(request):
         print "pst"
         print form
         if form.is_valid():
-            newdoc = FitnessListing(docfile = request.FILES['docfile'])
+            g = FitnessListing(Gallery = request.FILES['Gallery'])
             # print form
             print request
             # print form.title  
-            address = request.POST['address']
+            address = request.POST['Address']
             print address
-            title = request.POST['title']
+            title = request.POST['Name_Of_The_Fitness_Center']
             
-            description = request.POST['description']
+            description = request.POST['Description']
             print description
+
+            # print g
+            store = {"description":description, "title":title,"address":address}
+            es.create(index='gym_profile', doc_type='listings', body=store)
             body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
-            es.create(index='gym_profile', doc_type='listings', body=body)
-            newdoc.save()
+            
+            g.save()
 
             fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
 
@@ -103,8 +107,8 @@ def search_listings(request):
 
 
     """
-    query = request.GET('query',None)
-    location = request.GET('location', None)
+    # query = request.GET('query',None)
+    # location = request.GET('location', None)
 
     body = {"query": {"match_all": {}}, "highlight":{"fields": {"description":{}}}}
     es.create(index='gym_profile', doc_type='listings', body=body)
@@ -112,7 +116,7 @@ def search_listings(request):
     fulltext = es.search(index='gym_profile', doc_type='listings', q="*")
 
     # Redirect to the document list after POST
-    # return HttpResponse(json.dumps({'fulltext':fulltext}))
+    return HttpResponse(json.dumps({'fulltext':fulltext}))
 
     #query postgresql database given location
     #build a view as an abstract layer in models.py to get gyms based on location
