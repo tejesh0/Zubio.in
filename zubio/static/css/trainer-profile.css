@@ -6,7 +6,8 @@ nav{
 }
 
 .trainer-header{
-	height: 500px;
+	min-height: 500px;
+	height: auto;
 	background: #ededed;
 }
 
@@ -15,6 +16,8 @@ nav{
 }
 
 .trainer-img{
+	background: #eee;
+	border: 2px solid #eee;
 	margin: 50px auto;
 	display: block;
 	margin-bottom: 10px;
@@ -26,6 +29,56 @@ nav{
 	background-repeat: no-repeat;
 }
 
-.trainer p{
+h1{
+	padding: 0;
+	margin: 5px;
+	font-family: "montserratregular";
 	font-size: 18px;
 }
+
+.bio{
+	max-width: 550px;
+	margin: 0 auto;
+}
+
+.skills{
+	max-width: 600px;
+	margin: 10px auto;
+}
+
+.skills span{
+	padding: 3px 12px;
+	display: inline-block;
+	margin: 5px 0 0 3px ;
+	border-radius: 2px;
+	background: #e1e1e1; 
+	border: 1px solid #ccc;
+}
+
+.user-action{
+	margin: 25px 0;
+}
+
+.user-action a{
+	width: 120px;
+	height: 40px;
+	padding: 8px;
+	background: #fff;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	border: 1px solid #ccc;
+	border-radius: 999em;
+	color: #555;
+	font-family: "muliregular";
+}
+
+.user-action a.dark{
+	border-color: #333;
+	background: #333;
+	color: #eee;
+	margin-left: 5px;
+}
+
+
