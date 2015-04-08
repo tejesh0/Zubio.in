@@ -22,16 +22,14 @@ class FitnessListing(models.Model):
 	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'")
 	phone_number = models.CharField(default="",max_length=20,validators=[phone_regex])
 	Email = models.EmailField(default="")
-	Owners_Name = models.CharField(max_length=50, default="")
+	# Owners_Name = models.CharField(max_length=50, default="")
 
 	#Timings
 
 
 	#Pricing
 	Monthly = models.CharField(max_length=10, default="")
-	Quaterly = models.CharField(max_length=10, default="")
-	Half_yearly = models.CharField(max_length=10, default="")
-	Yearly = models.CharField(max_length=10, default="")
+
 
 	Membership = models.CharField(max_length=4, choices=CHOICE_BOOL, default='No')
 	AC = models.CharField(max_length=4, choices=CHOICE_BOOL, default='No')
