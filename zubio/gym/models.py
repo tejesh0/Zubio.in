@@ -16,7 +16,7 @@ CHOICE_CATEGORY = (
 )
 
 class FitnessListing(models.Model):
-	Name_Of_The_Fitness_Center = models.CharField(max_length=10, default="")
+	Name_Of_The_Fitness_Center = models.CharField(max_length=100, default="")
 	Choose_Fitness_Center_category = models.CharField(max_length=20,choices=CHOICE_CATEGORY, default='Gym')
 	Address = models.CharField(max_length=500)
 	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'")
