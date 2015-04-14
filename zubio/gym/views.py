@@ -9,12 +9,13 @@ from gym.models import FitnessListing, FitnessListingForm
 from django.shortcuts import render, render_to_response
 from django import forms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.list import ListView
 # import the logging library
 import logging
 logger = logging.getLogger(__name__)
 from elasticsearch import Elasticsearch
 import json
-
+from gym.models import Article
 
 es = Elasticsearch()
 # Get an instance of a logger
@@ -44,7 +45,6 @@ def gym_listing_form(request):
             store = {"description": description,
                      "title": title, "address": address}
             es.create(index='gym_profile', doc_type='listings', body=store)
-
 
             fulltext = es.search(
                 index='gym_profile', doc_type='listings', q="*")
@@ -119,14 +119,44 @@ def search_listings(request):
 
         fulltext = es.search(
             index='gym_profile', doc_type='listings', q=q + " " + l)
+        per_page = 5
+        paginator = Paginator(range(0, fulltext['hits']['total']), per_page)
+        paginator._count = fulltext['hits']['total']
 
+        logger.warning(paginator)
+        logger.warn("lol")
+        print paginator._count
 
+        objects = []
+        for r in fulltext['hits']['hits']:
+            print r['_source']['title']
+            objects.append(
+               r['_source']['title']
+                )
+        print objects
+        p = Paginator(objects, 2)
+
+        results = p.page(1)
+
+        print results
 
         # Redirect to the document list after POST
         # return render_to_response('listings.html', {'results':fulltext})
-        return HttpResponse(json.dumps({'fulltext': fulltext}))
+        return HttpResponse(json.dumps({'fulltext': results.object_list}))
+        # return (request, template_name = 'listings.html', queryset = objects, paginate_by = 2)
 
     return render_to_response('listings.html', {gyms: gyms})
+
+from django.utils import timezone
+class ArticleListView(ListView):
+
+    model = Article
+
+    template_name = 'article_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(ArticleListView, self).get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
 
 
 def api(request):
@@ -156,6 +186,7 @@ def api(request):
 
 def myfunction():
     logger.debug("this is a debug message!")
- 
+
+
 def myotherfunction():
     logger.error("this is an error message!!")
