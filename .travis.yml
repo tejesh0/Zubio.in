@@ -1,18 +1,37 @@
+
+  
+#   A basic travis.yml boilerplate for Django projects
+#
+#   The set-up assumes a postgreSQL database.
+#
+#   Replace the following variables in the code:
+# * your_project_settings
+# * your_github_username
+# * your_repo
+ 
 language: python
+ 
 python:
-  - "2.6"
-  - "2.7"
+  - 2.6
+  - 2.7
+ 
+services: postgresql
+ 
 env:
-  # - DJANGO=1.2.7
-  # - DJANGO=1.3.1
-  - DJANGO=1.7
+  - DJANGO=1.7.1
+ 
+before_install:
+  - export DJANGO_SETTINGS_MODULE=zubio.settings
+  - export PYTHONPATH=$HOME/builds/tejesh95/Zubio.in
+  - export PIP_USE_MIRRORS=true
+ 
 install:
-  - pip install -q Django==$DJANGO --use-mirrors
-  - pip install pep8 --use-mirrors
-  - pip install https://github.com/dcramer/pyflakes/tarball/master
-  - pip install -q -e . --use-mirrors
+  - pip install -r requirements.txt
+  - pip install django==$DJANGO --quiet
+  - pip install psycopg2 --quiet
+ 
 before_script:
-  - "pep8 --exclude=migrations --ignore=E501,E225 src"
-  - pyflakes -x W src
+  - psql -c "CREATE DATABASE mydb;" -U postgres
+ 
 script:
-  - python setup.py test
+  - python manage.py syncdb --noinput
