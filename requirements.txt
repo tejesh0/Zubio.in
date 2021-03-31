@@ -17,7 +17,7 @@ gyp==0.1
 html5lib==0.999
 httplib2==0.8
 lockfile==0.8
-lxml==3.3.3
+lxml==4.6.3
 numpy==1.8.2
 oauthlib==0.6.1
 oneconf==0.3.7
